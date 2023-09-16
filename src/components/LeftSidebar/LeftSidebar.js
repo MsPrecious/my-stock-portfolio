@@ -1,16 +1,28 @@
 // LeftSideBar.js
-import React from 'react';
+import React,{useState,useEffect} from 'react';
 import './LeftSidebar.css';
 import { useMenu } from '../../MenuContext'; 
 
-
-
-
 const LeftSideBar = () => {
   const { selectedItem, handleMenuItemClick, isDarkTheme, toggleTheme } = useMenu(); // Use useMenu hook
+
+  const [isCollapsed, setCollapsed] = useState(window.innerWidth <= 768);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const shouldCollapse = window.innerWidth <= 768;
+      setCollapsed(shouldCollapse);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
   
   return (
-    <div className={`left-sidebar ${isDarkTheme ? 'dark-theme' : 'light-theme'}`}>
+    <div className={`left-sidebar ${isDarkTheme ? 'dark-theme' : 'light-theme'} ${isCollapsed ? 'collapsed' : ''}`}>
       <div
         className={`menu-item ${selectedItem === 'dashboard' ? 'selected' : ''}`}
         onClick={() => {handleMenuItemClick('dashboard'); console.log("dashboard selected");}} 
