@@ -1,26 +1,17 @@
+// Navbar.js
 import React, { useState, useEffect } from 'react';
 import './Navbar.css';
 import hamburgerIcon from '../../images/hamburger.png';
 import userImage from '../../images/user-img.png';
 import logo from '../../images/logo.png';
-import LeftSidebar from '../LeftSidebar/LeftSidebar';
 
-const Navbar = () => {
+const Navbar = ({ toggleLeftSidebar }) => { // Receive toggleLeftSidebar prop
   const [isCollapsed, setCollapsed] = useState(window.innerWidth <= 768);
-  const [isLeftSidebarOpen, setLeftSidebarOpen] = useState(false);
-
-  const toggleLeftSidebar = () => {
-    setLeftSidebarOpen(!isLeftSidebarOpen);
-  };
 
   useEffect(() => {
     const handleResize = () => {
       const shouldCollapse = window.innerWidth <= 768;
       setCollapsed(shouldCollapse);
-
-      if (shouldCollapse) {
-        setLeftSidebarOpen(false);
-      }
     };
 
     window.addEventListener('resize', handleResize);
@@ -31,25 +22,22 @@ const Navbar = () => {
   }, []);
 
   return (
-    <div className="page-container">
-      <div className={`navbar-container ${isCollapsed ? 'collapsed' : ''}`}>
-        <div className="navbar-left">
-          <img
-            src={hamburgerIcon}
-            alt="Hamburger Menu"
-            className={`hamburger-icon ${isCollapsed ? 'show' : ''}`}
-            onClick={toggleLeftSidebar}
-          />
-          <img src={logo} alt="Logo" className="logo" />
-        </div>
-        <div className="navbar-right">
-          <div className="user-greeting">Hello Phoebe</div>
-          <div className="user-avatar">
-            <img src={userImage} alt="User" />
-          </div>
+    <div className={`navbar-container ${isCollapsed ? 'collapsed' : ''}`}>
+      <div className="navbar-left">
+        <img
+          src={hamburgerIcon}
+          alt="Hamburger Menu"
+          className={`hamburger-icon ${isCollapsed ? 'show' : ''}`}
+          onClick={toggleLeftSidebar} 
+        />
+        <img src={logo} alt="Logo" className="logo" />
+      </div>
+      <div className="navbar-right">
+        <div className="user-greeting">Hello Phoebe</div>
+        <div className="user-avatar">
+          <img src={userImage} alt="User" />
         </div>
       </div>
-      {isLeftSidebarOpen && <LeftSidebar  toggleLeftSideBar={toggleLeftSidebar} />}
     </div>
   );
 };

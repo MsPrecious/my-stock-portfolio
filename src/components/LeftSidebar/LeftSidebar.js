@@ -1,69 +1,61 @@
 // LeftSideBar.js
-import React, { useState } from 'react';
+import React from 'react';
 import './LeftSidebar.css';
+import { useMenu } from '../../MenuContext'; 
 
 
 
-const LeftSideBar = ({ onSelectMenuItem }) => {
-  const [isDarkTheme, setDarkTheme] = useState(true);
-  const [selectedItem, setSelectedItem] = useState(null);
 
-  const toggleTheme = () => {
-    setDarkTheme(!isDarkTheme);
-  };
-
-  const handleMenuItemClick = (menuItem) => {
-    setSelectedItem(menuItem);
-    onSelectMenuItem(menuItem); // Call the prop function provided by the parent component
-  };
-
+const LeftSideBar = () => {
+  const { selectedItem, handleMenuItemClick, isDarkTheme, toggleTheme } = useMenu(); // Use useMenu hook
+  
   return (
     <div className={`left-sidebar ${isDarkTheme ? 'dark-theme' : 'light-theme'}`}>
       <div
         className={`menu-item ${selectedItem === 'dashboard' ? 'selected' : ''}`}
-        onClick={() => handleMenuItemClick('dashboard')} 
+        onClick={() => {handleMenuItemClick('dashboard'); console.log("dashboard selected");}} 
       >
         <img src={require('../../images/dashboard.png')} alt="Dashboard Icon" />
         <span>Dashboard</span>
       </div>
       <div
         className={`menu-item ${selectedItem === 'sales' ? 'selected' : ''}`}
-        onClick={() => setSelectedItem('sales')}
+        onClick={() => handleMenuItemClick('sales')}
       >
         <img src={require('../../images/sales.png')} alt="Sales Icon" />
         <span>Sales</span>
       </div>
       <div
         className={`menu-item ${selectedItem === 'products' ? 'selected' : ''}`}
-        onClick={() => setSelectedItem('products')}
+        onClick={() => handleMenuItemClick('products')}
       >
         <img src={require('../../images/products.png')} alt="Products Icon" />
         <span>Products</span>
       </div>
       <div
         className={`menu-item ${selectedItem === 'stores' ? 'selected' : ''}`}
-        onClick={() => setSelectedItem('stores')}
+        onClick={() => handleMenuItemClick('stores')}
       >
         <img src={require('../../images/stores.png')} alt="Stores Icon" />
         <span>Stores</span>
       </div>
       <div
         className={`menu-item ${selectedItem === 'campaign' ? 'selected' : ''}`}
-        onClick={() => setSelectedItem('campaign')}
+        onClick={() => handleMenuItemClick('campaign')}
       >
         <img src={require('../../images/campaign.png')} alt="Campaign Icon" />
         <span>Campaign</span>
       </div>
       <div
         className={`menu-item ${selectedItem === 'notification' ? 'selected' : ''}`}
-        onClick={() => setSelectedItem('notification')}
+        onClick={() => handleMenuItemClick('notification')}
       >
         <img src={require('../../images/notification.png')} alt="Notifications Icon" />
         <span>Notifications</span>
       </div>
       <div
         className={`menu-item ${selectedItem === 'settings' ? 'selected' : ''}`}
-        onClick={() => setSelectedItem('settings')}
+        onClick={() => handleMenuItemClick('settings')}
       >
         <img src={require('../../images/settings.png')} alt="Settings Icon" />
         <span>Settings</span>

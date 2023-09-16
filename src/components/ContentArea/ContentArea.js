@@ -1,15 +1,20 @@
-// ContentArea.js
 import React from 'react';
 import './ContentArea.css';
+import { useMenu } from '../../MenuContext'; // Import useMenu hook
+import DashboardContent from '../DashboardContent/DashboardContent';
 
-// Import content components for each menu item
-import DashboardContent from '../DashboardContent/DashboardContent'; // Import actual content components
-// Import other content components...
+// Import other content components as needed
+// import SalesContent from '../SalesContent/SalesContent';
+// import ProductsContent from '../ProductsContent/ProductsContent';
+// import StoresContent from '../StoresContent/StoresContent';
 
-function ContentArea({ selectedMenuItem }) {
+function ContentArea() {
+  const { selectedMenuItem } = useMenu(); // Access selectedMenuItem from context
+  console.log('Inside Content Area', selectedMenuItem);
+
   // Determine which content component to render based on selectedMenuItem
   let contentToRender;
-
+  console.log('value for switch case:', selectedMenuItem);
   switch (selectedMenuItem) {
     case 'dashboard':
       contentToRender = <DashboardContent />;
@@ -18,7 +23,7 @@ function ContentArea({ selectedMenuItem }) {
 
     default:
       // Default content when no menu item is selected
-      contentToRender = <p>Please select a menu item.</p>;
+      contentToRender = null;
       break;
   }
 

@@ -1,33 +1,30 @@
 // App.js
-
 import React, { useState } from 'react';
-import './App.css'; // You can import a global CSS file for overall styling
-
+import './App.css';
 import Navbar from './components/Navbar/Navbar';
 import LeftSidebar from './components/LeftSidebar/LeftSidebar';
 import ContentArea from './components/ContentArea/ContentArea';
+import { MenuProvider } from './MenuContext';
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [selectedMenuItem, setSelectedMenuItem] = useState(null);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-
-  const handleMenuItemSelect = (menuItem) => {
-    setSelectedMenuItem(menuItem);
-  };
+  console.log('isSidebaropned:',isSidebarOpen);
   return (
-    <div className="app">
-      <Navbar onToggleSidebar={toggleSidebar} />
-      {isSidebarOpen && (
-        <div className="main-content">
-          <LeftSidebar onSelectMenuItem={handleMenuItemSelect} />
-          <ContentArea selectedMenuItem={selectedMenuItem} />
-        </div>
-      )}
-    </div>
+    <MenuProvider>
+      <div className="app">
+        <Navbar toggleLeftSidebar={toggleSidebar} /> {/* Pass the toggleSidebar function */}
+        {isSidebarOpen && (
+          <div className="main-content">
+            <LeftSidebar />
+            <ContentArea />
+          </div>
+        )}
+      </div>
+    </MenuProvider>
   );
 }
 

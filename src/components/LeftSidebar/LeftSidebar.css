@@ -47,10 +47,10 @@
   padding: 8px; /* Add extra padding for selected item */
   /* Preserve the original styles for the selected item */
   display: flex;
-  align-items: left;
+  align-items:center;
   cursor: pointer;
   margin-bottom: 25px;
-  /*transition: background-color 0.2s;*/
+  transition: background-color 0.2s;
   box-sizing: border-box; 
   padding-left: 1px;
 }
