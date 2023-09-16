@@ -1,12 +1,32 @@
-import React from 'react';
-import Navbar from './components/Navbar'; // Import the Navbar component
+// App.js
 
+import React, { useState } from 'react';
+import './App.css'; // You can import a global CSS file for overall styling
+
+import Navbar from './components/Navbar/Navbar';
+import LeftSidebar from './components/LeftSidebar/LeftSidebar';
+import ContentArea from './components/ContentArea/ContentArea';
 
 function App() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [selectedMenuItem, setSelectedMenuItem] = useState(null);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
+
+  const handleMenuItemSelect = (menuItem) => {
+    setSelectedMenuItem(menuItem);
+  };
   return (
-    <div className="App">
-      <Navbar /> {/* Include the Navbar component */}
-      {/* Your application content goes here */}
+    <div className="app">
+      <Navbar onToggleSidebar={toggleSidebar} />
+      {isSidebarOpen && (
+        <div className="main-content">
+          <LeftSidebar onSelectMenuItem={handleMenuItemSelect} />
+          <ContentArea selectedMenuItem={selectedMenuItem} />
+        </div>
+      )}
     </div>
   );
 }

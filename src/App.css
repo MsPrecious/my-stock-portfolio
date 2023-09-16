@@ -1,0 +1,11 @@
+/* App.css */
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Set the container to full viewport height */
+}
+
+.main-content {
+  display: flex;
+  flex-grow: 1;
+}

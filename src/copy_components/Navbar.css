@@ -54,6 +54,8 @@
   object-fit: cover;
 }
 
+
+
 /* Media query for screens with a max width of 768px (typical for mobile devices) */
 @media (max-width: 768px) {
   
