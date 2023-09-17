@@ -259,3 +259,14 @@ h6{
   background-color: red;
 }
 
+
+@media (max-width: 768px) {
+  .grid-container {
+    grid-template-columns: repeat(2, 1fr); 
+  }
+
+  .grid-container-cards,
+  .grid-container-cards-charts {
+    grid-template-columns: repeat(1, 1fr); 
+  }
+}
