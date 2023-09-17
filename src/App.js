@@ -16,7 +16,7 @@ function App() {
   return (
     <MenuProvider>
       <div className="app">
-        <Navbar toggleLeftSidebar={toggleSidebar} /> {/* Pass the toggleSidebar function */}
+        <Navbar toggleLeftSidebar={toggleSidebar} /> 
         {isSidebarOpen && (
           <div className="main-content">
             <LeftSidebar />

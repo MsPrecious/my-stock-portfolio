@@ -9,10 +9,19 @@
   align-items:left;
   padding: 20px 0;
   transition: width 0.3s; 
+  border: 1px solid #30475e;
+}
+
+.left-sidebar.dark-theme {
+  background-color: #142d4c;
 }
 
 .left-sidebar.collapsed {
   width: 60px; 
+}
+
+.left-sidebar.dark-theme.collapsed {
+  background-color: #142d4c;
 }
 
 .menu-item {
@@ -66,6 +75,14 @@
 
   .left-sidebar.collapsed {
     width: 0; 
+  }
+
+  .left-sidebar.dark-theme {
+    background-color: #142d4c;
+  }
+
+  .left-sidebar.dark-theme.collapsed {
+    background-color: #142d4c;
   }
   
 }

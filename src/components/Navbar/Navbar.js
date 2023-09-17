@@ -4,8 +4,10 @@ import './Navbar.css';
 import hamburgerIcon from '../../images/hamburger.png';
 import userImage from '../../images/user-img.png';
 import logo from '../../images/logo.png';
+import { useMenu } from '../../MenuContext';
 
-const Navbar = ({ toggleLeftSidebar }) => { // Receive toggleLeftSidebar prop
+const Navbar = ({ toggleLeftSidebar }) => { 
+  const { isDarkTheme } = useMenu();
   const [isCollapsed, setCollapsed] = useState(window.innerWidth <= 768);
 
   useEffect(() => {
@@ -22,7 +24,7 @@ const Navbar = ({ toggleLeftSidebar }) => { // Receive toggleLeftSidebar prop
   }, []);
 
   return (
-    <div className={`navbar-container ${isCollapsed ? 'collapsed' : ''}`}>
+    <div className={`navbar-container ${isCollapsed ? 'collapsed' : ''} ${isDarkTheme ? 'dark-theme' : 'light-theme'}`}>
       <div className="navbar-left">
         <img
           src={hamburgerIcon}

@@ -4,7 +4,7 @@ import './LeftSidebar.css';
 import { useMenu } from '../../MenuContext'; 
 
 const LeftSideBar = () => {
-  const { selectedItem, handleMenuItemClick, isDarkTheme, toggleTheme } = useMenu(); // Use useMenu hook
+  const { selectedItem, handleMenuItemClick, isDarkTheme, toggleTheme } = useMenu(); 
 
   const [isCollapsed, setCollapsed] = useState(window.innerWidth <= 768);
 
@@ -79,7 +79,7 @@ const LeftSideBar = () => {
         />
         <span>Theme</span>
         <img
-          src={require(`../../images/${isDarkTheme ? 'toggle-light.png' : 'toggle-dark.png'}`)}
+          src={require(`../../images/${isDarkTheme ? 'toggle-dark.png' : 'toggle-light.png'}`)}
           alt="Theme Toggle"
           style={{ width: '68px', height: '23px' }}
         />
